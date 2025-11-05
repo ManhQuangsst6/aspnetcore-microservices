@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "kGj9OpS4tto=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\admin\\RiderProjects\\aspnetcore-microservices\\src\\Services\\Ordering.API\\Ordering.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.9\\microsoft.aspnetcore.openapi.9.0.9.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}

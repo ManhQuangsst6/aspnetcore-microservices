@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  #database section
+  sqlserverdb:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+#network
+networks:
+  default:
+    name: microservice
+    driver: bridge
+
+#volumes section
+volumes:
+  sqlserver_data:
+    name: sqlserver_data
