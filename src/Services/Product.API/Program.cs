@@ -1,4 +1,6 @@
 using Common.Logging;
+using Product.API.Extensions;
+using Product.API.Persistence;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 
 builder.Host.UseSerilog(Serilogger.Configure);
+builder.Host.AddAppConfigurations();
+
+builder.Services.AddInfrastructure(builder.Configuration);
 var app = builder.Build();
 Log.Information("Start app");
 // Configure the HTTP request pipeline.
@@ -16,8 +21,11 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 Log.Information("Start app 2");
-app.UseHttpsRedirection();
-
+app.UseInfrastructure();
+app.MigrateDatabase<ProductContext>((context,_)=>
+{
+    ProductContextSeed.SeedProductAsync(context, Log.Logger).Wait();
+}).Run();    
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
